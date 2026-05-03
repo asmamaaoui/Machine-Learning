@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apprentissage Automatique — Fiches de Révision</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{
+  --white:#fff;--bg:#f8f7f4;--bg2:#f2f1ed;
+  --border:#e4e2db;--border2:#c8c5ba;
+  --t1:#18170f;--t2:#6b6858;--t3:#a8a498;
+
+  --c1:#1a3a7a;--c1bg:#eef2fc;--c1mid:#a8bcf0;
+  --c2:#1a5c2e;--c2bg:#edf7f1;--c2mid:#a8d9b8;
+  --c3:#7b3f00;--c3bg:#fdf3ea;--c3mid:#f0c897;
+  --c4:#6b1a1a;--c4bg:#fdf2f2;--c4mid:#e8b4b4;
+  --c5:#4a1a7a;--c5bg:#f4eefb;--c5mid:#c0a0e0;
+  --cex:#1a5c50;--cexbg:#edf7f5;--cexmid:#a0d4cc;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t1);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+
+/* HEADER */
+header{background:var(--white);border-bottom:1px solid var(--border);padding:2.75rem 2rem 2rem}
+.hdr{max-width:1200px;margin:0 auto}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);border:1px solid var(--border);border-radius:100px;padding:4px 14px;margin-bottom:1.25rem}
+.edot{width:6px;height:6px;background:#5b8def;border-radius:50%}
+header h1{font-family:'Lora',serif;font-size:clamp(1.8rem,4vw,2.75rem);font-weight:700;letter-spacing:-.02em;line-height:1.1;color:var(--t1);margin-bottom:.55rem}
+header h1 em{font-style:italic;color:var(--t2);font-weight:400}
+header p{color:var(--t2);font-size:.92rem;max-width:540px;line-height:1.78;font-weight:300;margin-bottom:1.75rem}
+.hstats{display:flex;gap:2rem;flex-wrap:wrap}
+.hs{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2)}
+.hs i{color:var(--t3);font-size:12px}
+.hs strong{color:var(--t1);font-weight:600}
+
+/* STICKY NAV */
+.snav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.snav-in{max-width:1200px;margin:0 auto;padding:.65rem 2rem;display:flex;gap:.75rem;align-items:center;flex-wrap:wrap}
+.sw{position:relative;flex:1;min-width:180px;max-width:290px}
+.sw i{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--t3);font-size:12px;pointer-events:none}
+input[type=text]{width:100%;padding:7px 12px 7px 32px;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--t1);font-size:13px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .15s}
+input[type=text]:focus{border-color:var(--border2)}
+input[type=text]::placeholder{color:var(--t3)}
+.tabs{display:flex;gap:3px;background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:3px;flex-wrap:wrap}
+.tab{padding:5px 12px;border-radius:6px;border:none;background:transparent;color:var(--t2);font-size:11.5px;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer;transition:all .15s;white-space:nowrap}
+.tab:hover:not(.active){color:var(--t1)}
+.tab.active{background:var(--white);color:var(--t1);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.ncount{font-family:'DM Mono',monospace;font-size:11px;color:var(--t3);margin-left:auto}
+.ncount strong{color:var(--t1)}
+
+/* MAIN */
+main{max-width:1200px;margin:0 auto;padding:2.5rem 2rem 5rem}
+
+/* CHAPTER BLOCK */
+.ch-block{margin-bottom:3.25rem}
+.ch-hdr{display:flex;align-items:center;gap:14px;margin-bottom:1.75rem;padding-bottom:1.1rem;border-bottom:1.5px solid var(--border)}
+.ch-ico{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.ch-info h2{font-family:'Lora',serif;font-size:1.1rem;font-weight:600;color:var(--t1);margin-bottom:3px}
+.ch-info p{font-size:12px;color:var(--t3);font-family:'DM Mono',monospace}
+
+/* SECTION DIVIDER */
+.sec-div{display:flex;align-items:center;gap:10px;margin:1.75rem 0 1rem}
+.sec-ico{width:26px;height:26px;border-radius:6px;background:var(--white);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--t3);font-size:11px;flex-shrink:0}
+.sec-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--t2);white-space:nowrap}
+.sec-line{flex:1;height:1px;background:var(--border)}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(355px,1fr));gap:10px}
+
+/* CARD */
+.card{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .15s,box-shadow .15s}
+.card:hover{border-color:var(--border2);box-shadow:0 2px 12px rgba(0,0,0,.055)}
+.card.open{box-shadow:0 2px 16px rgba(0,0,0,.07)}
+
+/* chapter color variants */
+.v1.open{border-color:var(--c1mid)} .v1 .cico.o{background:var(--c1bg);color:var(--c1);border-color:var(--c1mid)} .v1.open .ctag{color:var(--c1)} .v1 .arp{background:var(--c1)} .v1 .dar{border-right-color:var(--c1mid)}
+.v2.open{border-color:var(--c2mid)} .v2 .cico.o{background:var(--c2bg);color:var(--c2);border-color:var(--c2mid)} .v2.open .ctag{color:var(--c2)} .v2 .arp{background:var(--c2)} .v2 .dar{border-right-color:var(--c2mid)}
+.v3.open{border-color:var(--c3mid)} .v3 .cico.o{background:var(--c3bg);color:var(--c3);border-color:var(--c3mid)} .v3.open .ctag{color:var(--c3)} .v3 .arp{background:var(--c3)} .v3 .dar{border-right-color:var(--c3mid)}
+.v4.open{border-color:var(--c4mid)} .v4 .cico.o{background:var(--c4bg);color:var(--c4);border-color:var(--c4mid)} .v4.open .ctag{color:var(--c4)} .v4 .arp{background:var(--c4)} .v4 .dar{border-right-color:var(--c4mid)}
+.v5.open{border-color:var(--c5mid)} .v5 .cico.o{background:var(--c5bg);color:var(--c5);border-color:var(--c5mid)} .v5.open .ctag{color:var(--c5)} .v5 .arp{background:var(--c5)} .v5 .dar{border-right-color:var(--c5mid)}
+.vex.open{border-color:var(--cexmid)} .vex .cico.o{background:var(--cexbg);color:var(--cex);border-color:var(--cexmid)} .vex.open .ctag{color:var(--cex)} .vex .arp{background:var(--cex)} .vex .dar{border-right-color:var(--cexmid)}
+
+.card-head{padding:.95rem 1.1rem;display:flex;align-items:flex-start;gap:11px;cursor:pointer}
+.cico{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;color:var(--t3);font-size:13px;flex-shrink:0;transition:all .15s}
+.cmeta{flex:1;min-width:0}
+.ctag{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--t3);margin-bottom:4px;transition:color .15s}
+.ctitle{font-family:'Lora',serif;font-size:14px;font-weight:600;color:var(--t1);line-height:1.3}
+.cchev{width:24px;height:24px;border-radius:6px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--t3);font-size:10px;flex-shrink:0;transition:transform .2s,background .15s;margin-top:3px}
+.card.open .cchev{transform:rotate(180deg);background:var(--border)}
+
+/* CARD BODY */
+.cbody{display:none;border-top:1px solid var(--border)}
+.card.open .cbody{display:block}
+
+/* definition fr */
+.dfr-wrap{padding:1rem 1.1rem;border-bottom:1px solid var(--border)}
+.blk-lbl{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:7px}
+.dfr{font-size:13.5px;color:var(--t2);line-height:1.8}
+.dfr strong{color:var(--t1);font-weight:600}
+.dfr em{font-style:italic;color:var(--t2)}
+.dfr code{font-family:'DM Mono',monospace;font-size:12px;background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:1px 5px;color:var(--t1)}
+
+/* formula */
+.fml{display:block;margin:8px 0;background:#f4f3ef;border:1px solid var(--border);border-radius:8px;padding:9px 14px;font-family:'DM Mono',monospace;font-size:12.5px;color:var(--t1);text-align:center;line-height:1.9}
+.fml .v{color:#1a3a7a;font-weight:500}
+.fml .r{color:#7b3f00}
+
+/* steps */
+.step{display:flex;gap:10px;margin:6px 0;padding:8px 12px;background:var(--bg2);border-radius:8px;border-left:3px solid var(--border2);font-size:13px;line-height:1.65}
+.sn{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;color:var(--t3);flex-shrink:0;padding-top:1px;min-width:20px}
+
+/* table */
+table.tbl{width:100%;border-collapse:collapse;margin:8px 0;font-size:12.5px}
+table.tbl th,table.tbl td{padding:7px 10px;border:1px solid var(--border);text-align:left}
+table.tbl th{background:var(--bg2);font-weight:600;font-size:11px;font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.04em}
+table.tbl tr:nth-child(even) td{background:var(--bg)}
+
+/* arabic */
+.dar-wrap{padding:1rem 1.1rem;background:var(--bg)}
+.ar-lbl{display:flex;align-items:center;gap:7px;margin-bottom:8px}
+.arp{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.dar{font-size:13.5px;color:var(--t1);line-height:1.9;direction:rtl;text-align:right;border-right:2.5px solid var(--border2);padding-right:12px}
+
+/* FOOTER & SCROLL */
+footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11.5px;color:var(--t3);background:var(--white)}
+footer a{color:var(--t2);text-decoration:none}
+#st{position:fixed;bottom:1.5rem;right:1.5rem;width:40px;height:40px;background:var(--t1);color:var(--white);border:none;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;opacity:0;transform:translateY(6px);transition:opacity .2s,transform .2s;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.12)}
+#st.show{opacity:1;transform:translateY(0)}
+.hidden{display:none!important}
+.empty{text-align:center;padding:4rem 2rem;color:var(--t3)}
+.empty i{font-size:2rem;display:block;margin-bottom:1rem}
+@media(max-width:640px){main{padding:1.5rem 1rem 3rem}.grid{grid-template-columns:1fr}header,.snav-in{padding-left:1rem;padding-right:1rem}.ncount{display:none}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="hdr">
+  <div class="eyebrow"><span class="edot"></span>ISIG-K · 1MR-SII · Imen Abdennadher · 2025/2026</div>
+  <h1>Apprentissage Automatique<br><em>Fiches de Révision Complètes</em></h1>
+  <p>Cours complet — toutes les définitions, formules, étapes, exemples et distinctions. Aucune information omise. Cliquez sur une carte pour tout voir avec explication en dialecte tunisien.</p>
+  <div class="hstats">
+    <div class="hs"><i class="fa-solid fa-layer-group"></i><strong id="total-c">—</strong> fiches</div>
+    <div class="hs"><i class="fa-solid fa-book-open"></i><strong>2</strong> chapitres</div>
+    <div class="hs"><i class="fa-solid fa-robot"></i>Machine Learning</div>
+  </div>
+</div>
+</header>
+
+<div class="snav">
+<div class="snav-in">
+  <div class="sw"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="search" placeholder="Rechercher…" oninput="applyFilter()"></div>
+  <div class="tabs">
+    <button class="tab active" onclick="switchCh('all',this)">Tout</button>
+    <button class="tab" onclick="switchCh('ch1',this)">Chap. 1</button>
+    <button class="tab" onclick="switchCh('ch2',this)">Chap. 2</button>
+  </div>
+  <div class="ncount"><strong id="vis-c">—</strong> affichées</div>
+</div>
+</div>
+
+<main id="main"></main>
+<footer>Apprentissage Automatique · ISIG Kairouan · Imen Abdennadher · 2025/2026 · <a href="#"><i class="fa-brands fa-github"></i> GitHub Pages</a></footer>
+<button id="st" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script>
+const DATA = {
+ch1:{
+  label:'Chapitre 1',sub:'Concepts de base de l\'apprentissage automatique',
+  color:'v1',icon:'fa-solid fa-lightbulb',
+  sections:[
+  {title:'Introduction & Définitions',icon:'fa-solid fa-book',cards:[
+    {tag:'Définition',title:'Machine Learning — Définition et Synonymes',
+     fr:`<strong>L'apprentissage automatique (Machine Learning)</strong> fait référence au développement, à l'analyse et à l'implémentation de méthodes qui permettent à une machine d'<strong>évoluer grâce à un processus d'apprentissage</strong>, et ainsi de remplir des tâches difficiles ou impossibles par des moyens algorithmiques classiques.<br><br>
+     <strong>Synonymes :</strong>
+     <div class="step"><span class="sn">EN</span><span>Machine Learning</span></div>
+     <div class="step"><span class="sn">FR</span><span>Apprentissage automatique</span></div>
+     <div class="step"><span class="sn">FR</span><span>Apprentissage statistique</span></div>
+     <div class="step"><span class="sn">FR</span><span>Apprentissage artificiel</span></div>
+     <strong>Objectif :</strong> extraire et exploiter <em>automatiquement</em> l'information présente dans un ensemble de données.`,
+     ar:`الـ Machine Learning هو علم نخلي فيه الكمبيوتر يتعلم من البيانات بدون ما نبرمجوه خطوة بخطوة. بدل ما نقولوله "افعل كذا" — نعطيه بيانات ويكتشف القواعد بنفسه. هو جزء من الذكاء الاصطناعي وله عدة أسماء: Machine Learning، تعلم الآلة، التعلم الإحصائي.`
+    },
+    {tag:'Définition 1',title:'Définition Arthur Samuel (1959)',
+     fr:`<em>"L'apprentissage automatique c'est <strong>donner la capacité aux machines d'apprendre sans les programmer explicitement</strong>"</em> — Arthur Samuel, 1959<br><br>
+     <strong>Comparaison Programmation classique vs ML :</strong>
+     <table class="tbl">
+       <tr><th>Programmation classique</th><th>Machine Learning</th></tr>
+       <tr><td>Données + <strong>Règles</strong> → Résultats</td><td>Données + <strong>Résultats</strong> → Règles/Modèle</td></tr>
+       <tr><td>Le programmeur définit les règles</td><td>La machine apprend les règles</td></tr>
+       <tr><td>Rigide, difficile à adapter</td><td>S'adapte aux nouvelles données</td></tr>
+     </table>`,
+     ar:`Samuel قال: بدل ما تبرمج الكمبيوتر بقواعد ثابتة — خليه يكتشف القواعد بنفسه من البيانات. في البرمجة الكلاسيكية: أنت تكتب الوصفة. في ML: تعطيه المكونات والنتيجة ويكتشف الوصفة لوحده!`
+    },
+    {tag:'Définition 2',title:'Définition Tom Mitchell (1997) — T, E, P',
+     fr:`<em>"Un programme qui apprend est un programme qui tire profit d'une <strong>expérience E</strong> par rapport à une famille de <strong>tâches T</strong> pour une <strong>mesure d'efficacité P</strong>, si son efficacité P augmente après l'expérience E dans l'accomplissement des tâches T"</em> — Tom Mitchell, 1997<br><br>
+     <strong>Exemple — Jeu Brick Breaker :</strong>
+     <div class="step"><span class="sn">T</span><span><strong>Tâche</strong> : jouer au jeu Brick Breaker</span></div>
+     <div class="step"><span class="sn">E</span><span><strong>Expérience</strong> : parties jouées (données d'entraînement)</span></div>
+     <div class="step"><span class="sn">P</span><span><strong>Performance</strong> : score obtenu / taux de victoire</span></div>`,
+     ar:`Mitchell عرّف الـ ML بدقة: البرنامج "يتعلم" إذا كان أداؤه (P) يتحسن بعد التجربة (E) في الأداء المهمة (T). مثال: لعبة Brick Breaker — التجربة هي المباريات اللي لعبها — المهمة هي اللعب — الأداء هو الدرجة. كلما لعب أكثر، كلما تحسّن!`
+    },
+    {tag:'Domaines',title:'Machine Learning — Domaine Interdisciplinaire',
+     fr:`Le ML est un domaine <strong>interdisciplinaire</strong> qui se nourrit de plusieurs champs :<br><br>
+     <div class="step"><span class="sn">📊</span><span><strong>Statistiques</strong> : modélisation probabiliste, estimation</span></div>
+     <div class="step"><span class="sn">🧮</span><span><strong>Mathématiques</strong> : algèbre linéaire, optimisation, calcul</span></div>
+     <div class="step"><span class="sn">💻</span><span><strong>Informatique</strong> : algorithmes, complexité, bases de données</span></div>
+     <div class="step"><span class="sn">🧠</span><span><strong>Neurosciences</strong> : inspiration des réseaux de neurones biologiques</span></div>
+     <div class="step"><span class="sn">🔬</span><span><strong>Sciences cognitives</strong> : modélisation de l'apprentissage humain</span></div>
+     <br><strong>IA ⊃ ML :</strong> L'IA est le concept large (simuler la pensée humaine). Le ML est un <em>sous-domaine</em> de l'IA qui utilise les données pour apprendre automatiquement.`,
+     ar:`ML مش علم واحد — هو مزيج من عدة علوم: إحصاء + رياضيات + كمبيوتر + علم الأعصاب. وهو جزء من الذكاء الاصطناعي (IA ⊃ ML). الـ IA هو الفكرة العامة (الكمبيوتر يفكر كالإنسان). الـ ML هو طريقة محددة للوصول لهذا الهدف عن طريق البيانات.`
+    },
+    {tag:'Capacités',title:'Ce que le ML permet de faire',
+     fr:`Le ML permet aux machines de trouver des modèles et d'extraire des règles à partir de données afin de :<br><br>
+     <div class="step"><span class="sn">①</span><span><strong>Identifier ou classer</strong> les éléments (ex. spam/non spam)</span></div>
+     <div class="step"><span class="sn">②</span><span><strong>Détecter les similarités</strong> entre données (ex. images similaires)</span></div>
+     <div class="step"><span class="sn">③</span><span><strong>Faire des prédictions</strong> sur de nouvelles données (ex. prix d'une maison)</span></div>
+     <br>⚡ À mesure que davantage de données sont introduites → les <strong>performances s'améliorent</strong> avec l'expérience.`,
+     ar:`ML يقدر يعمل 3 أشياء أساسية: (1) يصنّف — هذا spam أو لا؟ (2) يكتشف التشابه — هذه الصورة تشبه أخرى؟ (3) يتنبأ — كم سعر هذه الدار؟ والمهم: كلما أعطيته بيانات أكثر — كلما أصبح أذكى!`
+    },
+  ]},
+  {title:'Types d\'Apprentissage',icon:'fa-solid fa-sitemap',cards:[
+    {tag:'Supervisé',title:'Apprentissage Supervisé — Définition et Types de tâches',
+     fr:`<strong>Apprentissage supervisé</strong> : les exemples d'apprentissage sont <strong>étiquetés par leurs classes</strong> (à travers un expert/superviseur). L'apprenant doit trouver ou approximer la <em>fonction qui permet d'affecter la bonne étiquette</em> aux exemples.<br><br>
+     <strong>2 phases :</strong>
+     <div class="step"><span class="sn">①</span><span><strong>Phase d'apprentissage (hors ligne)</strong> : déterminer un modèle à partir des données étiquetées. Entrée : Données + Résultats (étiquettes) → Sortie : Règles/Modèle</span></div>
+     <div class="step"><span class="sn">②</span><span><strong>Phase de test (en ligne)</strong> : prédire l'étiquette d'une nouvelle donnée à partir du modèle appris. Entrée : Nouvelles données + Modèle → Sortie : Prédiction (étiquette)</span></div>
+     <strong>3 types de tâches :</strong>
+     <div class="step"><span class="sn">📌</span><span><strong>Apprentissage de concepts</strong> : étiquette binaire (ex. spam / non spam)</span></div>
+     <div class="step"><span class="sn">📌</span><span><strong>Classification</strong> : étiquette discrète (ex. chat, lapin, poule)</span></div>
+     <div class="step"><span class="sn">📌</span><span><strong>Régression</strong> : étiquette réelle continue (ex. température, prix d'une action)</span></div>`,
+     ar:`الـ supervisé : كل مثال في التدريب عنده "صواب" معروف (étiquette). المثال: صور موسومة "قط" أو "كلب". المرحلة الأولى: نتعلم من هذه الأمثلة. المرحلة الثانية: نطبّق على صور جديدة. 3 تطبيقات: إما Binary (صح/خطأ) أو Classification (عدة فئات) أو Régression (قيمة مستمرة).`
+    },
+    {tag:'Non Supervisé',title:'Apprentissage Non Supervisé — Définition et Tâches',
+     fr:`<strong>Apprentissage non supervisé</strong> : l'opérateur ne dispose que d'exemples <strong>sans étiquettes</strong>. Le nombre de classes et leurs natures ne sont <em>pas prédéterminés</em>. L'algorithme doit <strong>découvrir par lui-même</strong> la structure cachée dans les données.<br><br>
+     <strong>3 tâches principales :</strong>
+     <div class="step"><span class="sn">①</span><span><strong>Repartitionnement (Clustering)</strong> : regrouper les données similaires. Exemple : <em>K-means</em></span></div>
+     <div class="step"><span class="sn">②</span><span><strong>Découverte d'association</strong> : trouver des règles entre items. Exemple : <em>Apriori</em> — {Lait} → {Jus}, {Sucre, Lait} → {Café}</span></div>
+     <div class="step"><span class="sn">③</span><span><strong>Réduction de dimension</strong> : réduire le nombre de caractéristiques sans perdre l'information essentielle. Utile quand la dimensionnalité est très grande.</span></div>`,
+     ar:`الـ non supervisé: ما عندكش étiquettes — الكمبيوتر يكتشف التجمعات والأنماط بنفسه. مثل تصنيف عملاء دون أن تعرف مسبقاً الفئات. 3 تطبيقات: (1) Clustering = تجميع المتشابهات (K-means) (2) Association = إيجاد قواعد "من اشترى A اشترى B" (Apriori) (3) Réduction dimension = تقليل عدد الخصائص.`
+    },
+    {tag:'Semi-Supervisé',title:'Apprentissage Semi-Supervisé — Hybride',
+     fr:`<strong>Apprentissage semi-supervisé</strong> : technique hybride utilisant une <strong>combinaison de données étiquetées et non étiquetées</strong>.<br><br>
+     <strong>Position :</strong> Entre supervisé (données étiquetées uniquement) et non supervisé (données non étiquetées uniquement).<br><br>
+     <strong>Techniques :</strong>
+     <div class="step"><span class="sn">①</span><span><strong>Auto-apprentissage (Self-training)</strong> : modèle entraîné sur données étiquetées → prédit labels pour non étiquetées → ajoute au jeu d'entraînement</span></div>
+     <div class="step"><span class="sn">②</span><span><strong>Modèles génératifs</strong> : GANs, autoencodeurs pour générer des labels artificiels</span></div>
+     <div class="step"><span class="sn">③</span><span><strong>Régularisation par consistance</strong> : les prédictions ne doivent pas changer avec de petites perturbations</span></div>
+     <strong>Avantages :</strong> réduit le besoin de données étiquetées (coûteux), meilleure généralisation.<br>
+     <strong>Applications :</strong> Google Photos (visages), NLP, détection de fraudes, médecine.`,
+     ar:`الـ semi-supervisé: عندك بعض الأمثلة الموسومة + برشا أمثلة غير موسومة. الفكرة: نستغل الاثنين معاً. مثل طالب عنده 10 تمارين محلولة و100 غير محلولة — يتعلم من المحلولة ويحل الباقية. تقليل تكلفة الوسم (وسم البيانات غالٍ جداً!)`
+    },
+    {tag:'Partiellement Supervisé',title:'Apprentissage Partiellement Supervisé — Distinctions',
+     fr:`<strong>Apprentissage partiellement supervisé</strong> : terme plus large que semi-supervisé. Utilise des <em>informations partielles ou incomplètes</em>.<br><br>
+     <strong>Cas inclus :</strong>
+     <div class="step"><span class="sn">①</span><span><strong>Labels partiels</strong> : une partie des données est étiquetée (comme semi-supervisé)</span></div>
+     <div class="step"><span class="sn">②</span><span><strong>Labels bruités</strong> : les annotations contiennent des erreurs ou incertitudes</span></div>
+     <div class="step"><span class="sn">③</span><span><strong>Labels faibles/approximatifs</strong> : on sait que x n'appartient pas à la classe A, mais pas s'il est B ou C. Ou : catégories générales au lieu de labels précis.</span></div>
+     <strong>Différence avec semi-supervisé :</strong>
+     <table class="tbl"><tr><th></th><th>Semi-supervisé</th><th>Partiellement supervisé</th></tr>
+     <tr><td>Données non étiquetées</td><td>✅ Principale source</td><td>✅ Inclus</td></tr>
+     <tr><td>Labels bruités</td><td>❌</td><td>✅</td></tr>
+     <tr><td>Labels imprécis</td><td>❌</td><td>✅</td></tr></table>`,
+     ar:`الـ partiellement supervisé أوسع من semi-supervisé. يشمل 3 حالات: (1) بعض البيانات موسومة (2) الوسوم فيها أخطاء (labels bruités) (3) الوسوم تقريبية — "أعرف أنه ليس A لكن لا أعرف إذا كان B أو C". الفرق: semi-supervisé يستخدم فقط البيانات غير الموسومة الصحيحة — أما partiellement supervisé يتعامل أيضاً مع الوسوم الغامضة أو الخاطئة.`
+    },
+    {tag:'Par renforcement',title:'Apprentissage par Renforcement — Récompense/Punition',
+     fr:`<strong>Apprentissage par renforcement</strong> : l'algorithme exerce une <strong>action sur son environnement</strong> qui produit une <em>valeur de retour</em>. Cette valeur guide l'algorithme (notion de <strong>récompense</strong> et de <strong>punition</strong>).<br><br>
+     <strong>Mécanisme :</strong>
+     <div class="step"><span class="sn">①</span><span><strong>Agent IA</strong> prend une <strong>Action</strong> sur l'<strong>Environnement</strong></span></div>
+     <div class="step"><span class="sn">②</span><span>L'environnement renvoie une <strong>Récompense</strong> (action bonne) ou une <strong>Punition</strong> (action mauvaise)</span></div>
+     <div class="step"><span class="sn">③</span><span>L'agent apprend à maximiser les récompenses sur le long terme</span></div>
+     <strong>Utilisation principale :</strong> Robotique, jeux vidéo (AlphaGo), véhicules autonomes.`,
+     ar:`الـ renforcement: الكمبيوتر يجرب أفعالاً ويتعلم من النتائج. إذا فعل شيئاً صحيحاً → مكافأة. إذا أخطأ → عقوبة. مثل تعليم كلب: إذا أتى عند النداء → يأخذ بسكويت. الكمبيوتر يتعلم تدريجياً كيف يزيد المكافآت. يُستخدم في الروبوتات وألعاب الفيديو (AlphaGo تعلم لعب الشطرنج هكذا).`
+    },
+  ]},
+  {title:'Environnement Méthodologique',icon:'fa-solid fa-cogs',cards:[
+    {tag:'Feature Extraction',title:'Extraction de Caractéristiques (Feature Extraction)',
+     fr:`Les données brutes ne sont souvent pas directement exploitables. L'<strong>extraction de caractéristiques</strong> est une étape critique :<br><br>
+     <strong>Problèmes des données brutes :</strong>
+     <div class="step"><span class="sn">⚠️</span><span><strong>Bruitées</strong> : données parasites, erreurs de mesure</span></div>
+     <div class="step"><span class="sn">⚠️</span><span><strong>Grandes dimensions</strong> : images (milliers de pixels), enregistrements audio</span></div>
+     <div class="step"><span class="sn">⚠️</span><span><strong>Information utile noyée</strong> dans des données non pertinentes</span></div>
+     <strong>Le bon équilibre :</strong>
+     <div class="step"><span class="sn">❌</span><span><strong>Trop simples</strong> → pas assez d'information → confusion entre classes</span></div>
+     <div class="step"><span class="sn">❌</span><span><strong>Trop riches</strong> → complexité excessive → grande variabilité → sur-apprentissage</span></div>
+     <div class="step"><span class="sn">✅</span><span><strong>Optimales</strong> → information suffisante sans redondance</span></div>
+     <strong>Exemples :</strong> Pour une image en niveaux de gris → taille, forme, histogramme de pixels. Pour une image couleur → pétales, feuilles, couleurs.`,
+     ar:`قبل التعلم يجب استخراج الخصائص المهمة من البيانات الخام. الصورة الخام = ملايين بيكسل — ما نستخدمشهم كلهم. نستخرج مميزات مهمة: الشكل، الحجم، اللون... إذا استخرجنا القليل جداً: النموذج يخلط بين الفئات. إذا كثير جداً: يعقّد الأمور ويحفظ بدل ما يتعلم.`
+    },
+    {tag:'Description des données',title:'Description et Difficultés des Données',
+     fr:`<strong>Modalités d'obtention des données :</strong>
+     <div class="step"><span class="sn">①</span><span><strong>D'un seul coup</strong> : échantillon fixé à l'avance (batch learning)</span></div>
+     <div class="step"><span class="sn">②</span><span><strong>Incrémentale</strong> : exemples un par un ou par paquets successifs (online learning)</span></div>
+     <strong>Formes de description des données :</strong>
+     <div class="step"><span class="sn">→</span><span><strong>Vecteurs</strong> : x=(x₁, x₂, …, xₙ) avec xᵢ ∈ ℝ (le plus courant)</span></div>
+     <div class="step"><span class="sn">→</span><span><strong>Séquences</strong> : aaa, b, abbaa, …</span></div>
+     <div class="step"><span class="sn">→</span><span><strong>Arbres</strong></span></div>
+     <div class="step"><span class="sn">→</span><span><strong>Graphes</strong></span></div>
+     <strong>Difficultés liées aux données :</strong> Bruit + valeurs manquantes, complexité de représentation, très grande dimension.`,
+     ar:`البيانات يمكن الحصول عليها دفعة واحدة (مثل dataset ثابت) أو بشكل تدريجي (تدريب مستمر). كل مثال تعلّم هو زوج (x, c) حيث x هي الخصائص وc هي الفئة. x يمكن أن يكون متجه أرقام أو تسلسل أو شجرة. المشاكل الشائعة: بيانات ناقصة، ضوضاء، أبعاد كثيرة جداً.`
+    },
+    {tag:'Exemple + Classes',title:'Exemple d\'Apprentissage — Types de classe c',
+     fr:`Un exemple d'apprentissage est un couple <strong>(x, c)</strong> où :<br>
+     <div class="step"><span class="sn">x</span><span>Description de l'objet : vecteur d'attributs x=(x₁, x₂, …, xₙ)</span></div>
+     <div class="step"><span class="sn">c</span><span>Classe de x (cas supervisé)</span></div>
+     <strong>Types d'apprentissage selon la nature de c :</strong>
+     <table class="tbl">
+       <tr><th>Nature de c</th><th>Type d'apprentissage</th><th>Exemple</th></tr>
+       <tr><td>Binaire (0/1)</td><td>Apprentissage de concept</td><td>Spam/Non-spam</td></tr>
+       <tr><td>Entier (discret)</td><td>Classification</td><td>Chat/Chien/Oiseau</td></tr>
+       <tr><td>Réel (continu)</td><td>Régression</td><td>Prix d'une maison</td></tr>
+     </table>
+     <strong>Types selon les attributs :</strong>
+     <div class="step"><span class="sn">→</span><span><strong>Apprentissage numérique</strong> : attributs numériques</span></div>
+     <div class="step"><span class="sn">→</span><span><strong>Apprentissage symbolique</strong> : attributs binaires ou séquences</span></div>`,
+     ar:`كل مثال تعليم هو زوج (x, c). x هي المدخلات (الخصائص) وc هي الإجابة الصحيحة. نوع c يحدد نوع المشكلة: إذا c ثنائي (0/1) → تعلم مفهوم. إذا c فئة من عدة فئات → تصنيف. إذا c رقم حقيقي → انحدار.`
+    },
+    {tag:'Partition du corpus',title:'Partition du Corpus : Train / Validation / Test',
+     fr:`Le corpus d'apprentissage est <strong>divisé en 3 parties</strong> :<br><br>
+     <div class="step"><span class="sn">70%</span><span><strong>Ensemble d'apprentissage (Train)</strong> : utilisé pour entraîner le modèle et trouver les paramètres</span></div>
+     <div class="step"><span class="sn">20%</span><span><strong>Ensemble de validation</strong> : utilisé comme contrôleur dans l'algorithme — guide le choix des hyperparamètres de h</span></div>
+     <div class="step"><span class="sn">10%</span><span><strong>Ensemble de test</strong> : utilisé pour vérifier la qualité finale de l'apprentissage — jamais vu pendant l'entraînement</span></div>
+     <strong>Règle cruciale :</strong> L'ensemble de test doit être <em>différent</em> de l'ensemble d'apprentissage !<br>
+     <strong>Généralisation</strong> = capacité de répondre correctement à des exemples <em>non vus</em> lors de l'apprentissage.`,
+     ar:`نقسم البيانات إلى 3 أجزاء: 70% للتدريب (التعلم) + 20% للتحقق (ضبط المعاملات) + 10% للاختبار (التقييم النهائي). القاعدة الذهبية: النموذج يجب أن يُقيَّم على بيانات لم يشاهدها أبداً. التعميم = القدرة على التعامل مع بيانات جديدة.`
+    },
+  ]},
+  {title:'Hypothèses et Évaluation',icon:'fa-solid fa-chart-line',cards:[
+    {tag:'Hypothèse',title:'Espace des Hypothèses — h, h*, H, f',
+     fr:`<strong>Hypothèse d'apprentissage (h)</strong> : règle de classification ou de décision approchant la vraie fonction f.<br><br>
+     <div class="step"><span class="sn">f</span><span><strong>Vraie fonction</strong> : la fonction idéale à apprendre (inconnue)</span></div>
+     <div class="step"><span class="sn">h</span><span><strong>Hypothèse</strong> : approximation de f trouvée par l'algorithme</span></div>
+     <div class="step"><span class="sn">H</span><span><strong>Espace des hypothèses</strong> : ensemble de toutes les hypothèses possibles</span></div>
+     <div class="step"><span class="sn">h*</span><span><strong>Meilleure hypothèse</strong> : h* = argmin risque dans H, on cherche h* ≈ f</span></div>
+     <strong>Exemples d'hypothèses :</strong>
+     <div class="step"><span class="sn">→</span><span><strong>Surface séparatrice</strong> (droite, courbe) en classification</span></div>
+     <div class="step"><span class="sn">→</span><span><strong>Grammaire</strong> (automate, séquences : aab, aaaab…)</span></div>
+     <div class="step"><span class="sn">→</span><span><strong>Arbre de décision</strong></span></div>
+     <div class="step"><span class="sn">→</span><span><strong>Réseau bayésien</strong></span></div>`,
+     ar:`h* هي أفضل نموذج نجده في مجموعة الفرضيات H. f هي الحقيقة المطلقة التي لا نعرفها. نهدف لإيجاد h بحيث h ≈ f. H إذا كانت واسعة جداً: صعب إيجاد h* لكنها قد تكون أقرب لـ f. H ضيقة: سهل إيجاد h* لكنها قد تكون بعيدة عن f.`
+    },
+    {tag:'Erreurs',title:'Types d\'Erreurs en Apprentissage',
+     fr:`<strong>3 types d'erreurs :</strong><br><br>
+     <div class="step"><span class="sn">①</span><span><strong>Erreur intrinsèque</strong> : les données sont bruitées, fausses ou mal étiquetées → irréductible</span></div>
+     <div class="step"><span class="sn">②</span><span><strong>Erreur d'approximation (biais inductif)</strong> : l'espace H est trop restreint → la meilleure h dans H est loin de f</span></div>
+     <div class="step"><span class="sn">③</span><span><strong>Erreur d'estimation (variance)</strong> : l'algorithme de recherche de h ne fonctionne pas bien</span></div>
+     <strong>Compromis Biais-Variance :</strong>
+     <table class="tbl">
+       <tr><th>H restreint</th><th>H large</th></tr>
+       <tr><td>h* facile à trouver</td><td>h* difficile à trouver</td></tr>
+       <tr><td>Peut être loin de f</td><td>Si trouvée : proche de f</td></tr>
+       <tr><td>Fort biais</td><td>Forte variance</td></tr>
+     </table>
+     → Il faut trouver un bon <strong>compromis biais-variance</strong>.`,
+     ar:`3 أنواع من الأخطاء: (1) خطأ جوهري: البيانات نفسها مغلوطة — لا حل. (2) خطأ التقريب (biais): مساحة الفرضيات ضيقة — النموذج بسيط جداً. (3) خطأ التقدير (variance): خوارزمية التعلم ضعيفة. التوازن بين biais وvariance هو تحدي ML الأساسي!`
+    },
+    {tag:'Taux d\'erreur',title:'Évaluation — Taux d\'Erreur et Risque Empirique',
+     fr:`<strong>Risque réel Rréel(h)</strong> : probabilité que h fasse une erreur sur un exemple aléatoire (inconnu en pratique).<br><br>
+     <strong>Risque empirique (taux d'erreur)</strong> : calculé sur l'échantillon disponible :<br>
+     <span class="fml"><span class="v">t_err</span> = R_empirique(h) = <span class="r">n_err</span> / m</span>
+     <div class="step"><span class="sn">n_err</span><span>Nombre d'exemples mal classés dans l'ensemble d'apprentissage ou de test</span></div>
+     <div class="step"><span class="sn">m</span><span>Taille de l'échantillon</span></div>
+     <strong>Taux de reconnaissance :</strong>
+     <span class="fml"><span class="v">t_reconnaissance</span> = (VP + VN) / m</span>
+     <strong>Sur-apprentissage :</strong> h s'ajuste exactement aux données d'apprentissage → mauvaise généralisation → apprendre par cœur.`,
+     ar:`الـ taux d'erreur هو نسبة الأمثلة الخاطئة. نحسبه على الـ test set (وليس train set!) لأننا نريد قياس التعميم. الـ sur-apprentissage: النموذج يحفظ التدريب بدقة 100% لكن يفشل مع بيانات جديدة — مثل الطالب يحفظ الأسئلة القديمة بدون فهم.`
+    },
+    {tag:'Matrice de confusion',title:'Matrice de Confusion — VP, FP, FN, VN et Métriques',
+     fr:`La <strong>matrice de confusion</strong> permet de définir des mesures fines du taux d'erreur :<br><br>
+     <table class="tbl">
+       <tr><th></th><th>f = +</th><th>f = −</th></tr>
+       <tr><td><strong>h = +</strong></td><td>✅ Vrais Positifs (VP) <em>Bonne acceptation</em></td><td>❌ Faux Positifs (FP) <em>Fausses alarmes</em></td></tr>
+       <tr><td><strong>h = −</strong></td><td>❌ Faux Négatifs (FN) <em>Faux rejets</em></td><td>✅ Vrais Négatifs (VN) <em>Rejets corrects</em></td></tr>
+     </table>
+     <strong>Métriques dérivées :</strong>
+     <span class="fml">
+       <span class="v">t_err</span> = (FP + FN) / m &nbsp;|&nbsp; <span class="v">t_reconnaissance</span> = (VP + VN) / m<br>
+       <span class="v">Rappel</span> = VP / (VP + FN) &nbsp;|&nbsp; <span class="v">Précision</span> = VP / (VP + FP)<br>
+       <span class="v">F-mesure</span> = 2 × Rappel × Précision / (Rappel + Précision)<br>
+       <span class="v">Spécificité</span> = VN / (VN + FP)
+     </span>
+     <strong>m</strong> = VP + VN + FP + FN (total)`,
+     ar:`مصفوفة الارتباك تقيّم النموذج بدقة. VP = صحيح ومصنف صحيح (ممتاز). VN = خطأ ومصنف خطأ (ممتاز). FP = خطأ لكن صُنّف صحيحاً (فزع كاذب). FN = صحيح لكن صُنّف خطأ (خطير — فات علينا شيء). من هذه القيم نحسب Rappel وPrécision وF-mesure وSpécificité.`
+    },
+    {tag:'Courbes',title:'Courbes ROC, Rappel-Précision, DET',
+     fr:`Pour visualiser et comparer les performances :<br><br>
+     <div class="step"><span class="sn">①</span><span><strong>Courbe Rappel-Précision</strong> : trace Précision en fonction du Rappel. Idéale si courbe proche du coin supérieur droit (Rappel=1, Précision=1)</span></div>
+     <div class="step"><span class="sn">②</span><span><strong>Courbe ROC</strong> : trace VP/(VP+FP) en fonction de FN/(FN+VN). Idéale si courbe proche du coin supérieur gauche</span></div>
+     <div class="step"><span class="sn">③</span><span><strong>Courbe DET</strong> : trace FN/(FN+VN) en fonction de FP/(VP+FP). Idéale si courbe proche du coin inférieur gauche</span></div>
+     <strong>Comparaison de deux algorithmes :</strong>
+     <span class="fml">z = |n₀₁ − n₁₀| / √(n₁₀ + n₀₁)</span>
+     n₀₁ = exemples mal classés par h0 et correctement par h1<br>
+     n₁₀ = exemples mal classés par h1 et correctement par h0`,
+     ar:`الـ ROC curve: تقارن نسبة التعرف الصحيح مقابل نسبة الأخطاء. الأفضل: منحنى قريب من الزاوية العليا اليسرى. الـ Rappel-Précision: كلما كان المنحنى أعلى وأيمن كلما كان أفضل. لمقارنة خوارزميتين: نستخدم مقياس z.`
+    },
+  ]},
+  ]
+},
+
+ch2:{
+  label:'Chapitre 2',sub:'Apprentissage supervisé',
+  color:'v2',icon:'fa-solid fa-graduation-cap',
+  sections:[
+  {title:'Principe & Régression',icon:'fa-solid fa-chart-line',cards:[
+    {tag:'Supervisé — Principe',title:'Fonction de Prédiction F : Régression vs Classification',
+     fr:`L'apprentissage supervisé analyse un ensemble de données <strong>{(X₁,Y₁), …(Xₙ,Yₙ)}</strong> pour construire une <strong>fonction de prédiction F : {features X} → {étiquettes Y}</strong>.<br><br>
+     <table class="tbl">
+       <tr><th>Type</th><th>Y (sortie)</th><th>Exemple</th></tr>
+       <tr><td><strong>Régression</strong></td><td>Valeur continue (ℝ)</td><td>Prix d'une maison</td></tr>
+       <tr><td><strong>Classification</strong></td><td>Catégorie discrète</td><td>Chat / Chien / Oiseau</td></tr>
+     </table>`,
+     ar:`الـ supervisé يبني دالة F من المدخلات X للمخرجات Y. إذا Y رقم حقيقي → Régression (نتوقع قيمة). إذا Y فئة → Classification (نصنّف لفئة). مثال Régression: توقع سعر منزل. مثال Classification: تمييز الحيوانات.`
+    },
+    {tag:'Régression linéaire',title:'Régression Linéaire — Définition, Fonction et MSE',
+     fr:`<strong>Objectif</strong> : modéliser la relation entre une variable dépendante continue et une ou plusieurs variables indépendantes via une <em>fonction linéaire</em>.<br><br>
+     <strong>Fonctions :</strong>
+     <span class="fml"><span class="v">Régression simple</span> : y = ax + b<br><span class="v">Régression multiple</span> : y = a₁x₁ + a₂x₂ + a₃x₃ + … + b</span>
+     où : y = variable dépendante | x = variable(s) indépendante(s) | a = pente | b = ordonnée à l'origine<br><br>
+     <strong>Applications :</strong> prix d'une maison selon superficie, ventes selon dépenses publicitaires.<br><br>
+     <strong>Fonction coût — MSE (Mean Squared Error) :</strong>
+     <span class="fml">MSE = (1/N) × Σᵢ (yᵢ − ŷᵢ)²</span>
+     Utilise la <em>norme euclidienne</em>. L'objectif est de <strong>minimiser la fonction coût</strong> pour trouver les poids optimaux a et b.`,
+     ar:`الـ Régression linéaire تجد أفضل خط مستقيم يمثل العلاقة بين المتغيرات. المعادلة: y = ax + b. للعديد من المتغيرات: y = a₁x₁ + a₂x₂ + ... + b. دالة التكلفة MSE تقيس متوسط مربع الخطأ بين القيم الحقيقية والمتوقعة. نريد تصغيرها للحصول على أفضل a وb.`
+    },
+    {tag:'Gradient Descent',title:'Algorithme Descente de Gradient (Gradient Descent)',
+     fr:`<strong>But</strong> : trouver le minimum de la fonction coût J(a,b) pour optimiser les paramètres.<br><br>
+     <strong>Étapes :</strong>
+     <div class="step"><span class="sn">①</span><span>Initialiser a et b <strong>au hasard</strong></span></div>
+     <div class="step"><span class="sn">②</span><span>Calculer la <strong>dérivée partielle</strong> de J(a,b) par rapport à chaque paramètre :<br>∂J/∂a et ∂J/∂b</span></div>
+     <div class="step"><span class="sn">③</span><span>Mettre à jour les paramètres : a ← a − α × ∂J/∂a &nbsp;|&nbsp; b ← b − α × ∂J/∂b</span></div>
+     <div class="step"><span class="sn">④</span><span>Répéter jusqu'à convergence (minimum atteint)</span></div>
+     <strong>Alpha (α) = Learning Rate</strong> (hyperparamètre) : définit la vitesse de convergence.<br>
+     <table class="tbl">
+       <tr><th>α trop élevé</th><th>α correct</th><th>α trop petit</th></tr>
+       <tr><td>Oscille, diverge</td><td>Converge bien</td><td>Converge très lentement</td></tr>
+     </table>`,
+     ar:`خوارزمية الانحدار التدريجي: ابدأ بأي نقطة عشوائية ← احسب ميل الدالة عند هذه النقطة ← تحرك في الاتجاه المعاكس للميل بخطوة صغيرة α ← كرر حتى تصل للحضيض (minimum). α كبير جداً: تقفز فوق الحضيض. α صغير جداً: تصل ببطء شديد. α مناسب: تصل بسرعة ودقة.`
+    },
+    {tag:'Métriques régression',title:'Métriques d\'Évaluation de la Régression',
+     fr:`<strong>Métriques de performance pour la régression :</strong><br><br>
+     <span class="fml">
+       <span class="v">MSE</span> = (1/N) × Σ(yᵢ − ŷᵢ)² &nbsp;&nbsp;&nbsp; (Mean Squared Error)<br>
+       <span class="v">RMSE</span> = √MSE &nbsp;&nbsp;&nbsp; (Root Mean Squared Error)<br>
+       <span class="v">MAE</span> = (1/N) × Σ|yᵢ − ŷᵢ| &nbsp;&nbsp;&nbsp; (Mean Absolute Error)<br>
+       <span class="v">R²</span> = 1 − (Σ(yᵢ−ŷᵢ)² / Σ(yᵢ−ȳ)²) &nbsp;&nbsp;&nbsp; (Coefficient de détermination)
+     </span>
+     <div class="step"><span class="sn">MSE</span><span>Pénalise fortement les grandes erreurs (carré)</span></div>
+     <div class="step"><span class="sn">RMSE</span><span>Même unité que y → interprétable</span></div>
+     <div class="step"><span class="sn">MAE</span><span>Robuste aux valeurs aberrantes</span></div>
+     <div class="step"><span class="sn">R²</span><span>Entre 0 et 1 → R²=1 : modèle parfait | R²=0 : aussi mauvais que prédire la moyenne</span></div>`,
+     ar:`4 مقاييس لتقييم نموذج الانحدار: MSE (متوسط مربع الخطأ — يعاقب الأخطاء الكبيرة) — RMSE (جذر MSE — بنفس وحدة y) — MAE (متوسط الخطأ المطلق — أقل حساسية للشاذات) — R² (كلما اقترب من 1 كلما كان النموذج أفضل).`
+    },
+    {tag:'Avantages/Limites',title:'Régression Linéaire — Avantages et Limites',
+     fr:`<strong>Avantages :</strong>
+     <div class="step"><span class="sn">✅</span><span>Simple à comprendre et à expliquer (interprétabilité)</span></div>
+     <div class="step"><span class="sn">✅</span><span>Utile pour l'analyse des données et comprendre les relations</span></div>
+     <strong>Limites :</strong>
+     <div class="step"><span class="sn">❌</span><span>Mauvaises performances s'il n'y a <em>pas de relation linéaire</em> entre les variables</span></div>
+     <div class="step"><span class="sn">❌</span><span>La plupart des phénomènes réels ne correspondent <em>pas</em> au modèle linéaire</span></div>
+     <div class="step"><span class="sn">❌</span><span><strong>Sensible aux valeurs aberrantes (outliers)</strong> : une valeur extrême peut fortement déformer la droite</span></div>`,
+     ar:`الانحدار الخطي بسيط وقابل للتفسير — لكن محدود. يفشل إذا العلاقة بين X وY منحنية أو غير خطية. والأهم: الـ outliers (قيم شاذة) تؤثر عليه بشدة — قيمة واحدة خارج المألوف يمكن أن تغير الخط كلياً.`
+    },
+    {tag:'Régression polynomiale',title:'Régression Polynomiale — Définition et Avantages',
+     fr:`<strong>Objectif</strong> : modéliser des relations <em>non-linéaires</em> en utilisant une fonction polynomiale.<br><br>
+     <strong>Fonction :</strong>
+     <span class="fml">y = a + bx + cx² + dx³ + …</span>
+     où a, b, c, d sont les <strong>coefficients du polynôme</strong>.<br><br>
+     <strong>Applications :</strong> croissance d'une population, trajectoire d'un objet en chute libre.<br><br>
+     <strong>Avantages :</strong>
+     <div class="step"><span class="sn">✅</span><span>Bonne approximation de relations non linéaires entre y et x</span></div>
+     <strong>Limites :</strong>
+     <div class="step"><span class="sn">❌</span><span>Sensible aux valeurs aberrantes (outliers)</span></div>
+     <div class="step"><span class="sn">❌</span><span>Régression généralisée sur des <strong>caractéristiques augmentées</strong> → peut avoir un grand nombre de valeurs en entrée</span></div>
+     <strong>Outliers</strong> = points s'écartant significativement de la majorité des observations.`,
+     ar:`الانحدار الكثيرات الحدود يحل مشكلة العلاقات غير الخطية. بدل خط مستقيم: يرسم منحنى. المعادلة تحتوي x² وx³... كلما زاد الدرجة كلما انعطف المنحنى أكثر. لكن: يبقى حساساً للـ outliers وقد يؤدي للـ sur-apprentissage عند درجات عالية.`
+    },
+  ]},
+  {title:'Classification — Régression Logistique',icon:'fa-solid fa-divide',cards:[
+    {tag:'Logistique',title:'Régression Logistique — Définition et Fonction Sigmoïde',
+     fr:`<strong>Objectif</strong> : prédire la probabilité d'une variable dépendante <em>catégorielle binaire</em> (0 ou 1, vrai ou faux).<br><br>
+     <strong>Principe :</strong> utilise une <strong>fonction sigmoïde</strong> pour transformer la sortie linéaire en une probabilité entre 0 et 1.<br><br>
+     <strong>Fonction sigmoïde :</strong>
+     <span class="fml">σ(z) = 1 / (1 + e<sup>−z</sup>)</span>
+     où z = ax + b (sortie linéaire)<br><br>
+     <strong>Sortie :</strong>
+     <div class="step"><span class="sn">→</span><span>Si σ(z) ≥ 0.5 → prédiction = <strong>1</strong> (classe positive)</span></div>
+     <div class="step"><span class="sn">→</span><span>Si σ(z) < 0.5 → prédiction = <strong>0</strong> (classe négative)</span></div>
+     <strong>Applications :</strong> prédire si un client clique sur une publicité, détecter une maladie selon des symptômes.`,
+     ar:`الـ Régression logistique مُربكة الاسم: هي خوارزمية تصنيف وليست انحداراً! تتنبأ بالاحتمالية: "ما احتمال أن هذا البريد spam؟". تستخدم دالة sigmoid لتحويل أي رقم إلى قيمة بين 0 و1. إذا الاحتمالية > 0.5: الفئة 1. وإلا: الفئة 0.`
+    },
+  ]},
+  {title:'Classification — KNN',icon:'fa-solid fa-people-group',cards:[
+    {tag:'KNN',title:'KNN — Algorithme des K Plus Proches Voisins',
+     fr:`<strong>KNN (K-Nearest Neighbors)</strong> : algorithme supervisé simple, utilisable pour <em>classification et régression</em>.<br><br>
+     <strong>5 étapes de l'algorithme :</strong>
+     <div class="step"><span class="sn">①</span><span>Sélectionner le nombre <strong>K de voisins</strong></span></div>
+     <div class="step"><span class="sn">②</span><span>Calculer la <strong>distance</strong> du point non classifié à tous les autres points</span></div>
+     <div class="step"><span class="sn">③</span><span>Prendre les <strong>K voisins les plus proches</strong> selon la distance calculée</span></div>
+     <div class="step"><span class="sn">④</span><span>Compter le nombre de points appartenant à <strong>chaque catégorie</strong> parmi les K voisins</span></div>
+     <div class="step"><span class="sn">⑤</span><span>Attribuer le point à la <strong>catégorie majoritaire</strong></span></div>
+     <strong>Règle selon la tâche :</strong>
+     <div class="step"><span class="sn">C</span><span><strong>Classification</strong> : label de la classe <em>majoritaire</em> parmi les K voisins</span></div>
+     <div class="step"><span class="sn">R</span><span><strong>Régression</strong> : <em>moyenne</em> (ou médiane) des valeurs des K voisins</span></div>`,
+     ar:`KNN بسيط جداً: لتصنيف نقطة جديدة — ابحث عن K نقاط أقرب إليها (باستخدام المسافة) — أعط النقطة الجديدة الفئة الأكثر تكراراً بين هؤلاء الـ K. مثال: إذا K=3 وأقرب 3 جيران هم: قط, قط, كلب → النقطة الجديدة هي قط (2 > 1).`
+    },
+    {tag:'KNN — Distances',title:'KNN — Fonctions de Distance',
+     fr:`Pour déterminer si une valeur est "proche" d'une autre, on utilise une <strong>fonction de similarité basée sur une distance</strong>.<br><br>
+     <strong>Distances les plus utilisées avec KNN :</strong>
+     <span class="fml">
+       <span class="v">Distance Euclidienne</span> = √(Σ(xᵢ − yᵢ)²)<br>
+       <span class="v">Distance de Manhattan</span> = Σ|xᵢ − yᵢ|
+     </span>
+     <strong>Exemple — Crocodile vs Alligator :</strong>
+     <div class="step"><span class="sn">→</span><span>Caractéristiques : largeur de la gueule (x₁) + longueur du corps (x₂)</span></div>
+     <div class="step"><span class="sn">→</span><span>Pour K=3 : trouver les 3 animaux les plus proches → classe majoritaire = alligator → nouvel animal classé alligator</span></div>
+     <strong>Choix de K :</strong> K petit → frontières complexes, sensible au bruit. K grand → frontières lisses, peut ignorer des patterns locaux.`,
+     ar:`KNN utilise distances pour trouver les voisins. Distance Euclidienne = pythagore en n dimensions. Distance Manhattan = somme des différences absolues (comme marcher dans une grille). مثال الكروكوديل/أليغاتور: نحسب المسافة بين الحيوان الجديد وكل الحيوانات المعروفة — نأخذ K الأقرب — الفئة الأكثر تكراراً هي الجواب.`
+    },
+    {tag:'KNN — Applications',title:'KNN — Applications',
+     fr:`<strong>Applications de KNN :</strong>
+     <div class="step"><span class="sn">①</span><span><strong>OCR (Optical Character Recognition)</strong> : détecter l'écriture manuscrite, les images et vidéos</span></div>
+     <div class="step"><span class="sn">②</span><span><strong>Crédit bancaire</strong> : prédire si une banque doit accorder un prêt selon le profil du demandeur (similaire aux clients solvables/défaillants passés)</span></div>
+     <div class="step"><span class="sn">③</span><span><strong>Recommandation</strong> : trouver des utilisateurs similaires pour recommander des produits/films</span></div>
+     <div class="step"><span class="sn">④</span><span><strong>Médecine</strong> : classification de maladies selon les symptômes</span></div>`,
+     ar:`KNN يُستخدم في: OCR (التعرف على الخط اليدوي) — البنوك (هل أمنح هذا الشخص قرضاً؟ انظر للأشخاص الأشبه به في السجل) — التوصيات (نتفليكس يجد مستخدمين مشابهين لك ويوصي بما شاهدوه) — الطب (تشخيص الأمراض).`
+    },
+  ]},
+  {title:'Classification — Arbre de Décision & ID3',icon:'fa-solid fa-tree',cards:[
+    {tag:'Arbre de décision',title:'Arbre de Décision — Structure et Terminologie',
+     fr:`Un <strong>arbre de décision</strong> est une structure hiérarchique très utilisée en ML supervisé.<br><br>
+     <strong>Composants :</strong>
+     <div class="step"><span class="sn">🌱</span><span><strong>Racine</strong> : nœud de départ en haut</span></div>
+     <div class="step"><span class="sn">📦</span><span><strong>Nœuds internes (nœuds de décision)</strong> : contiennent des tests/conditions sur les attributs</span></div>
+     <div class="step"><span class="sn">🍃</span><span><strong>Feuilles (nœuds terminaux)</strong> : contiennent la <em>classe à prédire</em> (variable cible)</span></div>
+     <div class="step"><span class="sn">↔️</span><span><strong>Branches</strong> : relient les nœuds selon les valeurs de l'attribut testé</span></div>
+     <div class="step"><span class="sn">🔤</span><span><strong>Attributs/Instances</strong> : valeurs que peut prendre une variable dans l'arbre</span></div>
+     <strong>Types :</strong>
+     <div class="step"><span class="sn">→</span><span><strong>Arbre de classification</strong> : variable cible qualitative (ex. Oui/Non)</span></div>
+     <div class="step"><span class="sn">→</span><span><strong>Arbre de régression</strong> : variable cible quantitative</span></div>
+     <em>L'arbre peut être traduit en un ensemble de règles de décision.</em>`,
+     ar:`شجرة القرار هي هيكل هرمي لاتخاذ القرارات. الجذر في الأعلى — الفروع هي الشروط — الأوراق هي النتائج النهائية. مثل دليل تشخيصي: "درجة الحرارة > 38؟ إذا نعم: رشح. إذا لا: ألم؟ إذا نعم: ..." يمكن تحويل الشجرة لمجموعة قواعد IF-THEN.`
+    },
+    {tag:'ID3 — Entropie',title:'Algorithme ID3 — Formule de l\'Entropie',
+     fr:`L'algorithme <strong>ID3</strong> construit un arbre de décision basé sur le <strong>Gain d'information</strong>.<br><br>
+     <strong>Entropie E</strong> : mesure l'<em>impureté</em> ou le <em>désordre</em> d'un ensemble S :<br>
+     <span class="fml"><span class="v">E(S)</span> = − Σᵢ₌₁ᵏ pᵢ × log_k(pᵢ)</span>
+     <div class="step"><span class="sn">k</span><span>Nombre de classes</span></div>
+     <div class="step"><span class="sn">pᵢ</span><span>Proportion de la classe i dans S</span></div>
+     <strong>Valeurs limites de E :</strong>
+     <div class="step"><span class="sn">E=0</span><span>Ensemble <strong>pur</strong> : tous les exemples appartiennent à la même classe → parfait pour une feuille</span></div>
+     <div class="step"><span class="sn">E=1</span><span>Ensemble <strong>totalement mixte</strong> : distribution uniforme entre toutes les classes → maximum de désordre</span></div>
+     <strong>Exemple (2 classes, log₂) :</strong>
+     <span class="fml">S = {6+, 6-} → E = −(0.5)log₂(0.5)−(0.5)log₂(0.5) = 1.00<br>S = {9+, 5-} → E = −(9/14)log₂(9/14)−(5/14)log₂(5/14) ≈ 0.94<br>S = {14+, 0-} → E = 0.00</span>`,
+     ar:`الـ Entropie تقيس الفوضى في مجموعة. إذا كل الأمثلة من نفس الفئة: E=0 (لا فوضى — ممتاز). إذا الأمثلة موزعة بالتساوي بين الفئات: E=1 (فوضى قصوى). الهدف: نختار الخاصية التي تقلل الـ Entropie أكثر بعد التقسيم.`
+    },
+    {tag:'ID3 — Gain',title:'Algorithme ID3 — Formule du Gain d\'Information',
+     fr:`<strong>Gain d'information G(S, Q)</strong> : mesure la <em>réduction d'entropie</em> apportée par un attribut Q pour diviser l'ensemble S :<br>
+     <span class="fml"><span class="v">G(S, Q)</span> = E(S) − Σᵢ₌₁ᵏ pᵢ × E(S, Qᵢ)</span>
+     <div class="step"><span class="sn">E(S)</span><span>Entropie de l'ensemble S avant la division</span></div>
+     <div class="step"><span class="sn">k</span><span>Nombre de valeurs de l'attribut Q</span></div>
+     <div class="step"><span class="sn">pᵢ</span><span>Proportion du sous-ensemble Sᵢ (exemples avec Q=Qᵢ)</span></div>
+     <div class="step"><span class="sn">E(S,Qᵢ)</span><span>Entropie du sous-ensemble Sᵢ</span></div>
+     <strong>Règle ID3 :</strong> choisir à chaque nœud l'attribut Q qui <strong>maximise le Gain d'information</strong>.<br><br>
+     <strong>Questions fondamentales de l'arbre de décision :</strong>
+     <div class="step"><span class="sn">①</span><span>Quelle variable discrimine le mieux → doit être considérée en premier ?</span></div>
+     <div class="step"><span class="sn">②</span><span>Si plusieurs structures répondent → laquelle choisir ? → Celle qui maximise G</span></div>`,
+     ar:`الـ Gain d'information = كم نقلّل الفوضى عند استخدام خاصية معينة للتقسيم. نحسب الـ Entropie قبل التقسيم E(S) — ثم الـ Entropie المرجّحة بعد التقسيم — الفرق هو الـ Gain. الخاصية ذات الـ Gain الأعلى تُختار أولاً للجذر!`
+    },
+    {tag:'ID3 — Exemple météo',title:'Exemple ID3 — Dataset Météo (14 jours)',
+     fr:`<strong>Problème :</strong> 14 jours (J1–J14), chacun avec 4 attributs météo et la classe cible "Jouer" (Oui/Non).<br><br>
+     <strong>Attributs :</strong>
+     <div class="step"><span class="sn">①</span><span><strong>État du ciel</strong> : Ensoleillé, Nuageux, Pluvieux</span></div>
+     <div class="step"><span class="sn">②</span><span><strong>Température</strong> : Chaude, Tiède, Fraîche</span></div>
+     <div class="step"><span class="sn">③</span><span><strong>Humidité</strong> : Élevée, Normale</span></div>
+     <div class="step"><span class="sn">④</span><span><strong>Force du vent</strong> : Fort, Faible</span></div>
+     <strong>Classe cible :</strong> Jouer = Oui (9 jours) / Non (5 jours)<br><br>
+     <strong>Démarche ID3 :</strong>
+     <div class="step"><span class="sn">①</span><span>Calculer E(S) total : S = {9 Oui, 5 Non}</span></div>
+     <div class="step"><span class="sn">②</span><span>Calculer G(S, Q) pour chaque attribut Q</span></div>
+     <div class="step"><span class="sn">③</span><span>Choisir l'attribut avec le <strong>gain maximal</strong> → racine de l'arbre</span></div>
+     <div class="step"><span class="sn">④</span><span>Répéter récursivement sur chaque sous-ensemble</span></div>
+     <div class="step"><span class="sn">⑤</span><span>Arrêter quand E=0 (feuille pure) ou plus d'attributs</span></div>`,
+     ar:`المثال الكلاسيكي: 14 يوم، كل يوم عنده 4 خصائص جوية — هل لعبنا أم لا؟ الخطوات: (1) احسب Entropie الكاملة (9 Oui + 5 Non) (2) لكل خاصية احسب الـ Gain (3) الخاصية ذات أعلى Gain تصبح الجذر (4) كرر لكل فرع حتى تصبح الأوراق نقية (E=0).`
+    },
+  ]},
+  ]
+}
+};
+
+/* RENDER */
+let activeCh='all';
+function render(){
+  const main=document.getElementById('main');
+  main.innerHTML='';
+  let total=0;
+  const keys=activeCh==='all'?['ch1','ch2']:[activeCh];
+  const icoStyle={v1:`background:var(--c1bg);color:var(--c1)`,v2:`background:var(--c2bg);color:var(--c2)`,v3:`background:var(--c3bg);color:var(--c3)`,v4:`background:var(--c4bg);color:var(--c4)`,v5:`background:var(--c5bg);color:var(--c5)`,vex:`background:var(--cexbg);color:var(--cex)`};
+
+  keys.forEach(key=>{
+    const ch=DATA[key];
+    const block=document.createElement('div');
+    block.className='ch-block';block.dataset.chapter=key;
+    block.innerHTML=`<div class="ch-hdr">
+      <div class="ch-ico" style="${icoStyle[ch.color]}"><i class="${ch.icon}"></i></div>
+      <div class="ch-info"><h2>${ch.label} — ${ch.sub}</h2><p>${ch.sections.length} sections · ${ch.sections.reduce((a,s)=>a+s.cards.length,0)} fiches</p></div>
+    </div>`;
+
+    ch.sections.forEach(sec=>{
+      const sdiv=document.createElement('div');
+      sdiv.dataset.secwrap=1;
+      sdiv.innerHTML=`<div class="sec-div"><div class="sec-ico"><i class="${sec.icon}"></i></div><span class="sec-label">${sec.title}</span><div class="sec-line"></div></div>`;
+
+      const grid=document.createElement('div');
+      grid.className='grid';grid.dataset.grid=1;
+
+      sec.cards.forEach(card=>{
+        const el=document.createElement('div');
+        el.className=`card ${ch.color}`;
+        el.dataset.chapter=key;
+        el.dataset.search=(card.tag+' '+card.title+' '+card.fr.replace(/<[^>]+>/g,'')+' '+(card.ar||'')).toLowerCase();
+
+        el.innerHTML=`<div class="card-head">
+          <div class="cico"><i class="${sec.icon}"></i></div>
+          <div class="cmeta"><div class="ctag">${card.tag}</div><div class="ctitle">${card.title}</div></div>
+          <div class="cchev"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="cbody">
+          <div class="dfr-wrap"><div class="blk-lbl">Définition / Explication</div><div class="dfr">${card.fr}</div></div>
+          ${card.ar?`<div class="dar-wrap"><div class="ar-lbl"><span class="arp"></span><span class="blk-lbl">بالعربي — فهمها صح</span></div><div class="dar">${card.ar}</div></div>`:''}
+        </div>`;
+
+        el.querySelector('.card-head').addEventListener('click',()=>{
+          const ico=el.querySelector('.cico');
+          el.classList.toggle('open');
+          ico.classList.toggle('o',el.classList.contains('open'));
+        });
+        grid.appendChild(el);total++;
+      });
+
+      sdiv.appendChild(grid);block.appendChild(sdiv);
+    });
+    main.appendChild(block);
+  });
+
+  document.getElementById('total-c').textContent=total;
+  applyFilter();
+}
+
+function applyFilter(){
+  const q=document.getElementById('search').value.toLowerCase().trim();
+  let vis=0;
+  document.querySelectorAll('.card').forEach(c=>{const s=!q||c.dataset.search.includes(q);c.classList.toggle('hidden',!s);if(s)vis++;});
+  document.querySelectorAll('[data-grid]').forEach(g=>{const a=[...g.querySelectorAll('.card')].some(c=>!c.classList.contains('hidden'));g.style.display=a?'':'none';if(g.previousElementSibling)g.previousElementSibling.style.display=a?'':'none';});
+  document.querySelectorAll('.ch-block').forEach(b=>{const a=[...b.querySelectorAll('.card')].some(c=>!c.classList.contains('hidden'));b.style.display=a?'':'none';});
+  document.getElementById('vis-c').textContent=vis;
+  let em=document.getElementById('empty-st');
+  if(vis===0){if(!em){em=document.createElement('div');em.id='empty-st';em.className='empty';em.innerHTML='<i class="fa-regular fa-face-sad-tear"></i><p>Aucune fiche trouvée.</p>';document.getElementById('main').appendChild(em);}em.style.display='';}
+  else if(em)em.style.display='none';
+}
+
+function switchCh(ch,btn){activeCh=ch;document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');render();}
+window.addEventListener('scroll',()=>{document.getElementById('st').classList.toggle('show',window.scrollY>400)});
+render();
+</script>
+</body>
+</html>
